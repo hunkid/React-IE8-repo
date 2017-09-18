@@ -4,7 +4,7 @@ class B extends React.Component {
   render() {
     return (
       <div>
-        <h1>这里是B</h1>
+        <h1 className="testBgImg">这里是B</h1>
       </div>
     )
   }
