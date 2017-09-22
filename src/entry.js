@@ -26,10 +26,11 @@ const B = require('./components/B')
 const Route = require('react-router').Route
 const IndexRoute = require('react-router').IndexRoute
 const Router = require('react-router').Router
-const hashHistory = require('react-router').hashHistory
+// const hashHistory = require('react-router').hashHistory
+const browserHistory = require('react-router').browserHistory
 
 ReactDOM.render(
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={App} /> 
       <Route path="/a" component={A} />
