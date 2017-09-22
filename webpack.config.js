@@ -55,8 +55,9 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = {
     entry: path.resolve(__dirname, './src/entry.js'),
     output: {
-      path: path.resolve(__dirname, 'dist'),
-      name: 'bundle.js'
+      path: path.resolve(__dirname, './dist'),
+      filename: 'bundle.[hash:16].js',
+      publicPath: '/'
     },
     debug: true,
     devtool: 'source-map',
@@ -72,16 +73,16 @@ module.exports = {
         }, {
           test: /\.css$/,
           exclude: /node_modules/,
-          include: path.resolve(__dirname, 'src'),
+          include: path.resolve(__dirname, './src'),
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         }, {
           test: /\.scss$/,
           exclude: /node_modules/,
-          include: path.resolve(__dirname, 'src'),
+          include: path.resolve(__dirname, './src'),
           loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
         }, {
           test: /\.(png|jpg|jpeg|gif)$/i,
-          loader: 'url-loader?limit=10'
+          loader: 'url-loader?limit=1024&name=img/[name][hash:8].[ext]'
         }
       ],
       postLoaders: [
@@ -92,7 +93,7 @@ module.exports = {
       ]
     },
     devServer: {
-      contentBase: path.join(__dirname, "dist"),
+      contentBase: path.join(__dirname, './dist'),
       port: 9000,
       hot: true,
       host: '0.0.0.0',
@@ -103,6 +104,6 @@ module.exports = {
         filename: 'index.html',
         template: 'index.html'
       }),
-      new ExtractTextPlugin('style_[contenthash].css')
+      new ExtractTextPlugin('css/style_[contenthash].css')
     ]
   }
