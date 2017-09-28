@@ -24,6 +24,7 @@ class Default extends Component {
     const { title, children } = this.props
     // let vendorsJs = `${microdata.domain}/build/${microdata.version}/js/vendors.js`
     // <script src={vendorsJs} />
+    let src = 'http://localhost:8888/bundle.js'
     return (
       <html>
         <div>layouts</div>
@@ -40,6 +41,7 @@ class Default extends Component {
         <body>
           {children}
           {this.renderScripts()}
+          <script src={src}></script>
         </body>
       </html>
     )

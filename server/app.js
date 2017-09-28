@@ -3,7 +3,8 @@ const koaRouter = require('koa-router')
 const path = require('path')
 var test = require('./test')
 const reactview = require('./plugins/reactview')
-
+const Static = require('./middleware/static')
+const serve = require('koa-static')
 require('regenerator-runtime/runtime')
 const port = 8888
 
@@ -21,7 +22,9 @@ const App = ()=> {
   // 配置render
   reactview(app)
 
-
+  // 静态资源托管
+  app.use(serve('dist'))
+  console.log(__dirname + '/dist')
   let router = koaRouter()
   router.get('/', async (ctx, next)=> {
     app.render(ctx, {

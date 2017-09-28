@@ -6,10 +6,10 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = [{
   name: 'browserSide',
-  entry: path.resolve(__dirname, './src/entry.js'),
+  entry: path.resolve(__dirname, './src/components/SSRComp/index.js'),
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.[hash:16].js',
+    filename: 'bundle.js',
     publicPath: '/'
   },
   debug: true,
@@ -49,18 +49,18 @@ module.exports = [{
     disableHostCheck: true
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'index.html',
+    //   template: 'index.html'
+    // }),
     new ExtractTextPlugin('css/style_[contenthash].css')
   ]
 }, {
   name: 'serverSide',
   entry: path.resolve(__dirname, './server/app.js'),
   output: {
-    path: path.resolve(__dirname, './server/dist'),
-    filename: 'index.js',
+    path: path.resolve(__dirname),
+    filename: 'run-app.js',
     publicPath: '/',
     libraryTarget: "commonjs2"
   },

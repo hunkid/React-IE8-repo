@@ -8,14 +8,10 @@ class Content extends React.Component {
   static propTypes = {
     showMsg: PropTypes.string
   }
-  componentWillMount() {
-    console.log('生命周期')
-    console.log(this.props)
-  }
   render() {
     return (
       <div>
-        {this.props.showMsg}
+        <span id="showMsgSp">{this.props.showMsg}</span>
         <h4>Content showed！！</h4>
       </div>
     )
