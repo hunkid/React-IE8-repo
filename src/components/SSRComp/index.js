@@ -11,5 +11,4 @@ const ReactDom = require('react-dom')
 
 const appEle = document.getElementById('demoApp')
 const txt = document.getElementById('showMsgSp').innerHTML
-// console.log(txt)
 ReactDom.render(<Content showMsg={txt + ',ClientRerender'} />, appEle)

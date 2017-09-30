@@ -1,7 +1,6 @@
 const Koa = require('koa')
 const koaRouter = require('koa-router')
 const path = require('path')
-var test = require('./test')
 const reactview = require('./plugins/reactview')
 const Static = require('./middleware/static')
 const serve = require('koa-static')
@@ -12,6 +11,7 @@ const App = ()=> {
   let app = new Koa()
   const viewpath = './views/'
   const SSRComp = require(viewpath + 'SSRComp')
+  const Zoo = require(viewpath + 'Zoo')
   app.config = {
     reactview: {
       viewpath: viewpath,                 // the root directory of view files
@@ -24,7 +24,7 @@ const App = ()=> {
 
   // 静态资源托管
   app.use(serve('dist'))
-  console.log(__dirname + '/dist')
+
   let router = koaRouter()
   router.get('/', async (ctx, next)=> {
     app.render(ctx, {
@@ -34,6 +34,17 @@ const App = ()=> {
       }
     })
   })
+
+  router.get('/zoo/:animal', async (ctx, next)=> {
+    let animal = ctx.params.animal
+    app.render(ctx, {
+      module: Zoo,
+      _locals: {
+        isServer: true
+      }
+    })
+  });
+
   app.use(router.routes())
   return app
 }

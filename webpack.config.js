@@ -6,10 +6,12 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = [{
   name: 'browserSide',
-  entry: path.resolve(__dirname, './src/components/SSRComp/index.js'),
+  entry: {
+          zoo: path.resolve(__dirname, './src/components/Zoo/index.js'),
+          ssrComp: path.resolve(__dirname, './src/components/SSRComp/index.js')},
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   debug: true,

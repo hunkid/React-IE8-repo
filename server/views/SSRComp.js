@@ -2,7 +2,6 @@
 
 import path from 'path'
 import React, { Component, PropTypes } from 'react'
-// import Content from '../../src/components/js/SSRComp/Content'
 import Content from '../../src/components/SSRComp/Content'
 import Default from './layout/Default'
 
@@ -10,14 +9,15 @@ class SSRComp extends Component {
   static propTypes = {
     myMsg: PropTypes.string
   }
-
+  scriptUrls
   render() {
     let { showMsg } = this.props
-    // let homeJs = `${microdata.styleDomain}/build/${microdata.styleVersion}/js/home.js`
-    // let scriptUrls = [homeJs]
+    let homeJs = `http://localhost:8888/ssrComp.js`
+    let scriptUrls = [homeJs]
     return (
       <Default
-        title={"demo"}>
+        title={"demo"}
+        scriptUrls={scriptUrls}>
         <div id="demoApp">
           <Content showMsg={showMsg} />
         </div>
